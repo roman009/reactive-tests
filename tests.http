@@ -1,0 +1,73 @@
+GET http://127.0.0.1:8080/
+
+<> 2023-08-08T171542.200.json
+<> 2023-08-08T160600.200.json
+
+###
+
+POST http://127.0.0.1:8080/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "98550cb7-8663-4418-92e7-b90eca55b18e",
+            "quantity": "1"
+        }
+    ]
+}
+
+<> 2023-08-08T163328.200.json
+<> 2023-08-08T162502.500.json
+<> 2023-08-08T162158.500.json
+<> 2023-08-08T162138.500.json
+<> 2023-08-08T162056.400.json
+<> 2023-08-08T162042.400.json
+<> 2023-08-08T162002.500.json
+<> 2023-08-08T161949.415.json
+<> 2023-08-08T161938.400.html
+
+###
+
+POST http://127.0.0.1:8080/products/add
+Content-Type: application/json
+
+{
+    "name": "prod1",
+    "stock": 1000
+}
+
+<> 2023-08-08T163316.200.json
+
+
+###
+
+DELETE http://127.0.0.1:8080/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "98550cb7-8663-4418-92e7-b90eca55b18e",
+            "quantity": "1"
+        }
+    ]
+}
+
+<> 2023-08-08T163353.200.json
+
+####
+
+POST http://127.0.0.1:8081/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "98550cb7-8663-4418-92e7-b90eca55b18e",
+            "quantity": "2"
+        }
+    ]
+}
+
+<> 2023-08-08T171612.500.json
