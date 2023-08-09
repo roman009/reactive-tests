@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>inventory</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>inventory</name>
     <description>inventory</description>
 
@@ -60,9 +60,7 @@
             <plugin>
                 <groupId>org.eclipse.jkube</groupId>
                 <artifactId>kubernetes-maven-plugin</artifactId>
-                <version>1.13.1</version>
                 <configuration>
-                    <registry>${docker.image.prefix}</registry>
                     <images>
                         <image>
                             <name>roman009/inventory</name>

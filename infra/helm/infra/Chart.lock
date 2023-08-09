@@ -1,0 +1,6 @@
+dependencies:
+- name: mongodb
+  repository: file://charts/mongodb
+  version: 0.1.0
+digest: sha256:e716a37bfc44ed6f23ba4ae9e3c19421746a9d3cfed4f98abf230493c910611b
+generated: "2023-08-09T15:42:27.208112+02:00"
