@@ -32,7 +32,7 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <surefire-plugin.version>3.0.0</surefire-plugin.version>
-        <docker.image.prefix>192.168.64.2:32000</docker.image.prefix>
+        <docker.image.prefix>192.168.64.3:32000</docker.image.prefix>
     </properties>
 
     <dependencyManagement>

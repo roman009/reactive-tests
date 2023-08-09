@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>inventory</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <name>inventory</name>
     <description>inventory</description>
 
@@ -49,6 +49,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>org.github.roman009.inventory.InventoryApplication</mainClass>
+                    <layout>JAR</layout>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
@@ -56,6 +58,13 @@
                         </exclude>
                     </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.eclipse.jkube</groupId>
@@ -70,9 +79,27 @@
                                 <ports>
                                     <port>8080</port>
                                 </ports>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <labels>
+                                    <app>inventory</app>
+                                    <version>${project.version}</version>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                </labels>
+                                <assembly>
+                                    <mode>dir</mode>
+                                </assembly>
                                 <env>
                                     <SPRING_PROFILES_ACTIVE>prod</SPRING_PROFILES_ACTIVE>
                                 </env>
+                                <entryPoint>
+                                    <exec>
+                                        <arg>sh</arg>
+                                        <arg>-c</arg>
+                                        <arg>java -jar /maven/inventory-${project.version}.jar</arg>
+                                    </exec>
+                                </entryPoint>
                             </build>
                         </image>
                     </images>

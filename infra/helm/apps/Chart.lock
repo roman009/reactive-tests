@@ -1,0 +1,6 @@
+dependencies:
+- name: inventory-svc
+  repository: file://charts/inventory-svc
+  version: 0.1.0
+digest: sha256:224125123fcc23f55bd7dab2a88ccb0ff66834f99fe987c994f0455ce73673c2
+generated: "2023-08-09T15:57:41.747294+02:00"
