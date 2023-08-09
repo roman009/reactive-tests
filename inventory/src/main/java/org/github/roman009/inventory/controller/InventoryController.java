@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class MainController {
+public class InventoryController {
 
     private final ProductService productService;
 

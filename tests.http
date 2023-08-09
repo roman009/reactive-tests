@@ -91,3 +91,29 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8082/
 Accept: application/json
+
+
+###
+
+POST http://127.0.0.1:8082/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "9bf78485-2f1c-4466-9f49-174e8ae140b9",
+            "quantity": "2"
+        }
+    ]
+}
+
+
+###
+
+POST http://127.0.0.1:8082/products/
+Content-Type: application/json
+
+{
+    "name": "prod333",
+    "stock": 4340
+}
