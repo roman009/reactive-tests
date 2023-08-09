@@ -57,6 +57,29 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.eclipse.jkube</groupId>
+                <artifactId>kubernetes-maven-plugin</artifactId>
+                <version>1.13.1</version>
+                <configuration>
+                    <registry>${docker.image.prefix}</registry>
+                    <images>
+                        <image>
+                            <name>roman009/inventory</name>
+                            <alias>inventory</alias>
+                            <build>
+                                <from>openjdk:17</from>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                                <env>
+                                    <SPRING_PROFILES_ACTIVE>prod</SPRING_PROFILES_ACTIVE>
+                                </env>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
