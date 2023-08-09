@@ -33,7 +33,7 @@ public class MainController {
         return productService.revertOrder(order);
     }
 
-    @PostMapping("/products/add")
+    @PostMapping("/products/")
     public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }

@@ -1,6 +1,7 @@
 package org.github.roman009.order.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.github.roman009.common.dto.Order;
 import org.github.roman009.common.dto.OrderLineItem;
 import org.github.roman009.common.dto.OrderStatus;
@@ -8,6 +9,7 @@ import org.github.roman009.order.entity.OrderEntity;
 import org.github.roman009.order.entity.OrderLineItemEntity;
 import org.github.roman009.order.repository.OrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
     private final OrderRepository orderRepository;
 
@@ -37,6 +40,7 @@ public class OrderService {
                 .collect(java.util.stream.Collectors.toList());
     }
 
+    @Transactional
     public Order createOrder(Order order) {
         OrderEntity savedOrder = orderRepository.save(OrderEntity.builder()
                 .id(UUID.randomUUID().toString())
@@ -57,6 +61,7 @@ public class OrderService {
                 restTemplate.delete("http://localhost:8080/", savedOrder.toDto());
             }
         } catch (Exception e) {
+            log.error("Error while sending order to inventory service", e);
             savedOrder.setStatus(OrderStatus.FAILED);
             orderRepository.save(savedOrder);
         }

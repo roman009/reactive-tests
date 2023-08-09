@@ -1,0 +1,6 @@
+quarkus:
+  http:
+    port: 8082
+  mongodb:
+    connection-string: "mongodb://localhost:27017"
+    database: "inventory"
