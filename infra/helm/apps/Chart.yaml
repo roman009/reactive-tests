@@ -12,3 +12,6 @@ dependencies:
   - name: order-svc
     version: 0.1.0
     repository: file://charts/order-svc
+  - name: inventoryqs-svc
+    version: 0.1.0
+    repository: file://charts/inventoryqs-svc

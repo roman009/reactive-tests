@@ -5,5 +5,8 @@ dependencies:
 - name: order-svc
   repository: file://charts/order-svc
   version: 0.1.0
-digest: sha256:a85a4db4f9a3e151ee8177f7e7dbcc3c09151f524743d0883a3e7d7b0018d746
-generated: "2023-08-10T07:32:39.830839+02:00"
+- name: inventoryqs-svc
+  repository: file://charts/inventoryqs-svc
+  version: 0.1.0
+digest: sha256:1d524bf4120c75eb343023b39c12fc570f4ccdf632b606fa24d07f19f7176fc3
+generated: "2023-08-10T09:27:50.589096+02:00"

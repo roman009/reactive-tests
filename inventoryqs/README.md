@@ -78,3 +78,9 @@ The Quarkus application configuration is located in `src/main/resources/applicat
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+### Build a uber executable
+
+```
+clean package -Dquarkus.package.type=uber-jar org.eclipse.jkube:kubernetes-maven-plugin:1.13.1:build org.eclipse.jkube:kubernetes-maven-plugin:1.13.1:push
+```

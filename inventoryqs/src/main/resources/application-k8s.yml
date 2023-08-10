@@ -1,0 +1,8 @@
+quarkus:
+  http:
+    port: 8080
+  mongodb:
+    connection-string: "mongodb://infra-mongodb.sales-app.svc.cluster.local:27017/"
+    database: "inventory"
+  log:
+    level: INFO

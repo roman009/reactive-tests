@@ -10,8 +10,8 @@
     </parent>
 
     <artifactId>inventoryqs</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>inventoryq</name>
+    <version>0.0.7-SNAPSHOT</version>
+    <name>inventoryqs</name>
     <description>inventory service with quarkus</description>
 
     <dependencies>
@@ -47,6 +47,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
         <dependency>
             <groupId>org.github.roman009</groupId>
@@ -119,6 +123,54 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jkube</groupId>
+                <artifactId>kubernetes-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>roman009/inventoryqs</name>
+                            <alias>inventoryqs</alias>
+                            <build>
+                                <from>openjdk:17</from>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <labels>
+                                    <app>inventoryqs</app>
+                                    <version>${project.version}</version>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                </labels>
+                                <assembly>
+                                    <mode>dir</mode>
+                                    <layers>
+                                        <layer>
+                                            <id>application</id>
+                                            <files>
+                                                <file>
+                                                    <source>${project.build.directory}/${project.build.finalName}-runner.jar</source>
+                                                    <outputDirectory>.</outputDirectory>
+                                                    <destName>inventoryqs-${project.version}.jar</destName>
+                                                </file>
+                                            </files>
+                                        </layer>
+                                    </layers>
+                                </assembly>
+                                <entryPoint>
+                                    <exec>
+                                        <arg>sh</arg>
+                                        <arg>-c</arg>
+                                        <arg>java -jar -Dquarkus.profile=k8s /maven/inventoryqs-${project.version}.jar</arg>
+                                    </exec>
+                                </entryPoint>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>

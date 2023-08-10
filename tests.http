@@ -178,14 +178,20 @@ Content-Type: application/json
 
 ###
 
-POST http://sales-app.k8s.local/order/
+POST https://sales-app.k8s.local/order/
 Content-Type: application/json
 
 {
     "lineItems": [
         {
             "productId": "d5de76de-9cef-44c2-bfab-18eebcb988ce",
-            "quantity": "1"
+            "quantity": "11"
         }
     ]
 }
+
+###
+
+GET http://sales-app.k8s.local/inventoryqs/
+Content-Type: application/json
+Accept: application/json
