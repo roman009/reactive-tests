@@ -22,7 +22,7 @@
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <build.plugins.plugin.version>3.8.1</build.plugins.plugin.version>
+        <build.plugins.plugin.version>3.1.2</build.plugins.plugin.version>
         <quarkus.platform.version>3.2.3.Final</quarkus.platform.version>
         <spring-boot.version>3.1.2</spring-boot.version>
         <compiler-plugin.version>3.11.0</compiler-plugin.version>
@@ -32,7 +32,7 @@
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <surefire-plugin.version>3.0.0</surefire-plugin.version>
-        <docker.image.prefix>192.168.64.3:32000</docker.image.prefix>
+        <docker.image.prefix>registry.k8s.local:32000</docker.image.prefix>
     </properties>
 
     <dependencyManagement>
@@ -112,6 +112,11 @@
                 <configuration>
                     <registry>${docker.image.prefix}</registry>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${build.plugins.plugin.version}</version>
             </plugin>
         </plugins>
     </build>

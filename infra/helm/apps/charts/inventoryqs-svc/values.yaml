@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: "192.168.64.3:32000/roman009/inventoryqs"
+  repository: "registry.k8s.local:32000/roman009/inventoryqs"
   pullPolicy: Always
   https: false
   tag: "latest"

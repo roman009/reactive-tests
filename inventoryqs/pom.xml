@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>inventoryqs</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <name>inventoryqs</name>
     <description>inventory service with quarkus</description>
 
