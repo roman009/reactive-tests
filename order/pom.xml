@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>order</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>order</name>
     <description>order</description>
 
@@ -39,6 +39,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.github.roman009</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -51,12 +55,60 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <mainClass>org.github.roman009.order.OrderApplication</mainClass>
+                    <layout>JAR</layout>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jkube</groupId>
+                <artifactId>kubernetes-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>roman009/order</name>
+                            <alias>order</alias>
+                            <build>
+                                <from>openjdk:17</from>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <labels>
+                                    <app>order</app>
+                                    <version>${project.version}</version>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                </labels>
+                                <assembly>
+                                    <mode>dir</mode>
+                                </assembly>
+                                <env>
+                                    <SPRING_PROFILES_ACTIVE>k8s</SPRING_PROFILES_ACTIVE>
+                                </env>
+                                <entryPoint>
+                                    <exec>
+                                        <arg>sh</arg>
+                                        <arg>-c</arg>
+                                        <arg>java -jar -Dspring.profiles.active=k8s /maven/order-${project.version}.jar</arg>
+                                    </exec>
+                                </entryPoint>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
         </plugins>

@@ -8,6 +8,7 @@ import org.github.roman009.common.dto.OrderStatus;
 import org.github.roman009.order.entity.OrderEntity;
 import org.github.roman009.order.entity.OrderLineItemEntity;
 import org.github.roman009.order.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +21,9 @@ import java.util.UUID;
 @Slf4j
 public class OrderService {
     private final OrderRepository orderRepository;
+
+    @Value("${order.inventory-service.url}")
+    private String inventoryServiceUrl;
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll().stream()
@@ -50,7 +54,7 @@ public class OrderService {
 
         RestTemplate restTemplate = new RestTemplate();
         try {
-            var res = restTemplate.postForObject("http://localhost:8080/", savedOrder.toDto(), Order.class);
+            var res = restTemplate.postForObject(inventoryServiceUrl, savedOrder.toDto(), Order.class);
             assert res != null;
             if (res.getStatus().equals(OrderStatus.SUCCESS)) {
                 savedOrder.setStatus(OrderStatus.SUCCESS);
@@ -58,7 +62,7 @@ public class OrderService {
             } else {
                 savedOrder.setStatus(OrderStatus.FAILED);
                 orderRepository.save(savedOrder);
-                restTemplate.delete("http://localhost:8080/", savedOrder.toDto());
+                restTemplate.delete(inventoryServiceUrl, savedOrder.toDto());
             }
         } catch (Exception e) {
             log.error("Error while sending order to inventory service", e);

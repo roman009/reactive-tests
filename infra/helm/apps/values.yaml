@@ -1,4 +1,9 @@
 inventory-svc:
   replicaCount: 1
   image:
-    tag: "0.0.6-SNAPSHOT"
+    tag: "0.0.7-SNAPSHOT"
+
+order-svc:
+    replicaCount: 1
+    image:
+      tag: "0.0.2-SNAPSHOT"

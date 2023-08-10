@@ -1,0 +1,6 @@
+apiVersion: v2
+name: order-svc
+description: A Helm chart for Kubernetes to deploy the order service
+type: application
+version: 0.1.0
+appVersion: "0.0.1"

@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>inventory</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.7-SNAPSHOT</version>
     <name>inventory</name>
     <description>inventory</description>
 
@@ -91,13 +91,13 @@
                                     <mode>dir</mode>
                                 </assembly>
                                 <env>
-                                    <SPRING_PROFILES_ACTIVE>prod</SPRING_PROFILES_ACTIVE>
+                                    <SPRING_PROFILES_ACTIVE>k8s</SPRING_PROFILES_ACTIVE>
                                 </env>
                                 <entryPoint>
                                     <exec>
                                         <arg>sh</arg>
                                         <arg>-c</arg>
-                                        <arg>java -jar /maven/inventory-${project.version}.jar</arg>
+                                        <arg>java -jar -Dspring.profiles.active=k8s /maven/inventory-${project.version}.jar</arg>
                                     </exec>
                                 </entryPoint>
                             </build>
