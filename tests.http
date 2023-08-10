@@ -117,3 +117,75 @@ Content-Type: application/json
     "name": "prod333",
     "stock": 4340
 }
+
+###
+
+POST http://127.0.0.1:8080/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "98550cb7-8663-4418-92e7-b90eca55b18e",
+            "quantity": "1"
+        }
+    ]
+}
+
+
+###
+
+POST http://sales-app.k8s.local/inventory/products/
+Content-Type: application/json
+
+{
+    "name": "prod2",
+    "stock": 2000
+}
+
+###
+
+GET http://sales-app.k8s.local/inventory/
+
+
+###
+
+POST http://sales-app.k8s.local/inventory/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "d5de76de-9cef-44c2-bfab-18eebcb988ce",
+            "quantity": "1"
+        }
+    ]
+}
+
+###
+
+DELETE http://sales-app.k8s.local/inventory/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "d5de76de-9cef-44c2-bfab-18eebcb988ce",
+            "quantity": "1"
+        }
+    ]
+}
+
+###
+
+POST http://sales-app.k8s.local/order/
+Content-Type: application/json
+
+{
+    "lineItems": [
+        {
+            "productId": "d5de76de-9cef-44c2-bfab-18eebcb988ce",
+            "quantity": "1"
+        }
+    ]
+}
