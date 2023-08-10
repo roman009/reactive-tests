@@ -2,13 +2,52 @@ inventory-svc:
   replicaCount: 1
   image:
     tag: "0.0.8-SNAPSHOT"
+  resources:
+     limits:
+       cpu: 3000m
+       memory: 200Mi
+     requests:
+       cpu: 130m
+       memory: 130Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 50
+#     targetMemoryUtilizationPercentage: 80
 
 order-svc:
   replicaCount: 1
   image:
     tag: "0.0.3-SNAPSHOT"
+  resources:
+    limits:
+      cpu: 3000m
+      memory: 200Mi
+    requests:
+      cpu: 130m
+      memory: 130Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 50
+#     targetMemoryUtilizationPercentage: 80
 
 inventoryqs-svc:
   replicaCount: 1
   image:
     tag: "0.0.8-SNAPSHOT"
+  resources:
+    limits:
+      cpu: 3000m
+      memory: 200Mi
+    requests:
+      cpu: 130m
+      memory: 130Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 50
+#     targetMemoryUtilizationPercentage: 80

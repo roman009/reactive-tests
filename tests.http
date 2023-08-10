@@ -139,8 +139,8 @@ POST http://sales-app.k8s.local/inventory/products/
 Content-Type: application/json
 
 {
-    "name": "prod2",
-    "stock": 2000
+    "name": "prod4",
+    "stock": 21000
 }
 
 ###
@@ -184,8 +184,8 @@ Content-Type: application/json
 {
     "lineItems": [
         {
-            "productId": "d5de76de-9cef-44c2-bfab-18eebcb988ce",
-            "quantity": "11"
+            "productId": "0c5d69b2-b8f8-42e8-86fb-4ac18ccf35a9",
+            "quantity": "151"
         }
     ]
 }
@@ -195,3 +195,7 @@ Content-Type: application/json
 GET http://sales-app.k8s.local/inventoryqs/
 Content-Type: application/json
 Accept: application/json
+
+###
+
+GET http://sales-app.k8s.local/order/
